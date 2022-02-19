@@ -1,13 +1,44 @@
 from PIL import Image
 import colorsys
 
-#functions
-def between(h,lo,up):
-    if(h>lo/360) and (h<up/360):
-        return 1
-    else:
-        return 0
 #which gun is it?
+gun="pink_blastx"
+#which variant to?
+
+#Function for all guns -> Variants (WIP)
+def pink_blastx(x,y,z):
+    temp=(x,y,z)
+    #pink
+    if(x<345/360) and (x>310/360):
+        if(y>0.1) and (z+y>0.8):
+            temp=((x+100/360)%1,y,z)
+    #purple
+    elif(x<310/360) and (x>240/360):
+        if(y>0.1) and (z+y>0.75):
+            temp=((x+0.25)%1,y,z)
+    #cyan
+    elif(x<190/360) and (x>145/360):
+        if(z+y>0.5) and (y>0.1):
+            temp=((x-60/360)%1,y,z)
+    #blue
+    elif(x<240/360) and (x>175/360):
+        if(z+y>0.5) and (y>0.3):
+            temp=((x+0.4)%1,y,z)
+    return temp
+
+def ion(x,y,z):
+    temp=(x,y,z)
+    if(180/360<x) and (x<280/360) and (y+z>1):
+        temp=((x+0.15)%1,y,z)
+    return temp
+
+#definitive gun function
+if(gun=="pink_blastx"):
+    def wgun(x,y,z):
+        return pink_blastx(x,y,z)
+elif(gun=="ion"):
+    def wgun(x,y,z):
+        return ion(x,y,z)
 
 #read how many frames to edit
 f=open("cons.txt","r")
@@ -52,33 +83,7 @@ for no in range(0,count):
         s=hsv[1]
         v=hsv[2]
         #Edit
-        #pink
-        pink=0
-        if(h<345/360) and (h>310/360) and (s+v>0.8) and (v>0.1):
-            pink=1
-        #purple
-        purple=0
-        if(h<310/360) and (h>240/360) and (s+v>0.75) and (v>0.1):
-            purple=1
-        #cyan
-        cyan=0
-        if(h<190/360) and (h>145/360) and (s+v>0.5) and (v>0.1):
-            cyan=1
-        #blue
-        blue=0
-        if(h<240/360) and (h>175/360) and (s+v>0.5) and (v>0.3):
-            blue=1
-        #change
-        sh=no/120
-        if(pink==1):
-            (h,s,v)=(h,0,(1+v)/2)
-        elif(purple==1):
-            (h,s,v)=((h+sh+0.25)%1,s,v)
-        elif(cyan==1):
-            (h,s,v)=((h+sh+0.5)%1,s,v)
-        elif(blue==1):
-            (h,s,v)=((h+sh+0.4)%1,s,v)
-
+        (h,s,v)=wgun(h,s,v)
         #apply edit
         rgb=colorsys.hsv_to_rgb(h,s,v)
         r=int(255*rgb[0])
