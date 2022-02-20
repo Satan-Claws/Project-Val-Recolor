@@ -2,7 +2,7 @@ from PIL import Image
 import colorsys
 
 #which gun is it?
-gun="pink_blastx"
+gun="yellow_prime"
 #which variant to?
 
 #Function for all guns -> Variants (WIP)
@@ -32,6 +32,13 @@ def ion(x,y,z):
         temp=((x+0.15)%1,y,z)
     return temp
 
+def yellow_prime(x,y,z):
+    temp=(x,y,z)
+    if(x>40/360) and (x<70/360):
+        if(y+z>0.7):
+            temp=((x+0.2)%1,y,z)
+    return temp
+
 #definitive gun function
 if(gun=="pink_blastx"):
     def wgun(x,y,z):
@@ -39,6 +46,9 @@ if(gun=="pink_blastx"):
 elif(gun=="ion"):
     def wgun(x,y,z):
         return ion(x,y,z)
+elif(gun=="yellow_prime"):
+    def wgun(x,y,z):
+        return yellow_prime(x,y,z)
 
 #read how many frames to edit
 f=open("cons.txt","r")
@@ -71,17 +81,11 @@ for no in range(0,count):
     pixels=im.load()
     width,height=im.size
     for index in range(0,maskc):
-        i=mask[index][0]
-        j=mask[index][1]
-
+        (i,j)=(mask[index])
         #read rgb and convert to hsv
-        r=pixels[i,j][0]
-        g=pixels[i,j][1]
-        b=pixels[i,j][2]
+        (r,g,b)=(pixels[i,j])
         hsv=colorsys.rgb_to_hsv(r/255,g/255,b/255)
-        h=hsv[0]
-        s=hsv[1]
-        v=hsv[2]
+        (h,s,v)=(hsv)
         #Edit
         (h,s,v)=wgun(h,s,v)
         #apply edit
