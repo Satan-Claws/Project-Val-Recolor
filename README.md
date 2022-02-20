@@ -16,6 +16,6 @@ Run **run_me.py**.
 
 # 
 For now the variables are set to change Pink_BlastX -> Spectrum  
-Modes to select Input gun and Output gun will be added later.
-
-[Examples](https://www.youtube.com/playlist?list=PLjpbm8yWbSjMlHu2BynX2lXg3tEzGbW8q)
+Modes to select Input gun and Output gun will be added later.  
+Check the **wiki** out to know how everything was made/ how it works.  
+[Examples](https://www.youtube.com/playlist?list=PLjpbm8yWbSjMlHu2BynX2lXg3tEzGbW8q), Clips where Val Recolor was used with presets.
