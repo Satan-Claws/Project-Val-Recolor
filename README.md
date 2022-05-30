@@ -1,5 +1,6 @@
 # Project-Val-Recolor
 
+[Examples](https://www.youtube.com/playlist?list=PLjpbm8yWbSjMlHu2BynX2lXg3tEzGbW8q)
 (WIP)  
 Python program to edit colors of parts of video that stand out.  
 Mainly written to change variants of Guns in Videos clipped from Valorant.  
