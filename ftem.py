@@ -2,7 +2,7 @@ from PIL import Image
 import colorsys
 
 #which gun is it?
-gun="elderflame"
+gun="protocol"
 #which variant to?
 
 #Function for all guns -> Variants (WIP)
@@ -53,6 +53,13 @@ def elderflame(x,y,z):
             temp=((x+0.77)%1,y,z)
     return temp
 
+def protocol(x,y,z):
+    temp=(x,y,z)
+    if(x>290/360) and (x<350/360):
+        if(y+z>1):
+            temp=((x-120/360)%1,y+0.1,z)
+    return temp
+
 #definitive gun function
 if(gun=="pink_blastx"):
     def wgun(x,y,z):
@@ -69,6 +76,9 @@ elif(gun=="gaia_red"):
 elif(gun=="elderflame"):
     def wgun(x,y,z):
         return elderflame(x,y,z)
+elif(gun=="protocol"):
+    def wgun(x,y,z):
+        return protocol(x,y,z)
 
 #read how many frames to edit
 f=open("cons.txt","r")
